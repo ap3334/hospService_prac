@@ -11,7 +11,7 @@ public class HospDownloadBatch {
     // cron = 초 분 시 일 월 주 (년)"
     @Scheduled(cron = "0 * * * * *", zone = "Asia/Seoul")
     public void startBatch() {
-        System.out.println("excute");
+//        System.out.println("excute");
     }
 
 }
