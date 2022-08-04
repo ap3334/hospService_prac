@@ -1,8 +1,6 @@
-package com.jung.hospservice.dto;
+package com.jung.hospservice.batch;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -32,7 +30,6 @@ class Item {
     private String pcrPsblYn;
     private String ratPsblYn;
     private Integer recuClCd;
-    private Integer rnum;
     private String rprtWorpClicFndtTgtYn;
     private String sgguCdNm;
     private String sidoCdNm;
