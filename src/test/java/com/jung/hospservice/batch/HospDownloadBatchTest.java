@@ -6,6 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -30,8 +31,6 @@ class HospDownloadBatchTest {
     @Test
     public void 공공데이터_다운로드_전체_담기_테스트() {
 
-        List<HospitalDto> all = new ArrayList<>();
-
         RestTemplate rt = new RestTemplate();
 
         // 초기 numOfRows의 값이 1이면 컬렉션이 아니라 파싱이 안돼 오류가 발생함
@@ -39,14 +38,33 @@ class HospDownloadBatchTest {
         ResponseDto responseDto = rt.getForObject(url, ResponseDto.class);
 
         int totalCnt = responseDto.getResponse().getBody().getTotalCount();
-        int page = 1;
 
         String newUrl = "http://apis.data.go.kr/B551182/rprtHospService/getRprtHospService?serviceKey=/7bUQRDAVeOz8OUi2pk6QLOFXx/gJTQMKFoym8SP18azscytoTJqYPSPj7TpDNy7gRyJNRIaqR4l0tp9vgPuFw==&pageNo=1&numOfRows="
                 + totalCnt + "&_type=json";
 
         ResponseDto newResponseDto = rt.getForObject(newUrl, ResponseDto.class);
 
-        List<Item> hospitals = newResponseDto.getResponse().getBody().getItems().getItem();
+        List<Item> items = newResponseDto.getResponse().getBody().getItems().getItem();
+
+        assertThat(items.size()).isEqualTo(totalCnt);
+
+        List<HospitalDto> hospitals = items.stream().map((e) -> {
+            return HospitalDto.builder()
+                    .addr(e.getAddr())
+                    .mgtStaDd(e.getMgtStaDd())
+                    .pcrPsblYn(e.getPcrPsblYn())
+                    .ratPsblYn(e.getRatPsblYn())
+                    .recuClCd(e.getRecuClCd())
+                    .sgguCdNm(e.getSgguCdNm())
+                    .sidoCdNm(e.getSidoCdNm())
+                    .xPos(e.getXPos())
+                    .yPos(e.getYPos())
+                    .xPosWgs84(e.getXPosWgs84())
+                    .yPosWgs84(e.getYPosWgs84())
+                    .yadmNm(e.getYadmNm())
+                    .ykihoEnc(e.getYkihoEnc())
+                    .build();
+        }).collect(Collectors.toList());
 
         assertThat(hospitals.size()).isEqualTo(totalCnt);
 
