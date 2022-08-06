@@ -67,11 +67,26 @@
         PCR 병원 조회 사이트
     </h1>
 
-    <form th:method="post">
-        <input type="text" placeholder="시도명(ex. 경기, 서울)" class="input input-bordered input-success w-full max-w-xs" name="sidoCdNm"/>
-        <input type="text" placeholder="시구명(ex. 화성시, 강남구)" class="input input-bordered input-success w-full max-w-xs" name="sgguCdNm"/>
-        <button type="submit" class="btn btn-active">search</button>
-    </form>
+    <div class="overflow-x-auto">
+        <table class="table table-compact w-full">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>addr</th>
+                <th>phoneNumber</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="hospital : ${hospitals}" th:if="${hospital.getPcrPsblYn() == 'Y'}">
+                <td>[[${hospital.getYadmNm}]]</td>
+                <td>[[${hospital.getAddr}]]</td>
+                <td>[[${hospital.getTelno}]]</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 </body>
