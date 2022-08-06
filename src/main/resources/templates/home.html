@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/daisyui@2.22.0/dist/full.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PCR 검사 가능 병원 조회</title>
+</head>
+
+<style>
+    .show {
+        display: inline-block;
+    }
+    .hide {
+        display: none;
+    }
+</style>
+
+<script>
+
+    function showMenu() {
+        let has = $('.slide').hasClass('show');
+
+        if ( has ) {
+            $('.slide').removeClass('show');
+            $('.slide').addClass('hide');
+        }
+        else {
+            $('.slide').removeClass('hide');
+            $('.slide').addClass('show');
+        }
+    };
+
+</script>
+
+<body>
+
+<div class="navbar bg-base-100">
+    <div class="flex-none">
+        <button class="menu-btn btn btn-square btn-ghost" onclick="showMenu();">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </div>
+    <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">ZZUNG_0NE</a>
+    </div>
+    <div class="flex-none">
+        <button class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+        </button>
+    </div>
+
+
+
+</div>
+
+<ul class="slide hide menu bg-base-100 w-56 rounded-box">
+    <li><a>Item 1</a></li>
+    <li class="bordered"><a>I have border</a></li>
+    <li><a>Item 3</a></li>
+</ul>
+
+<h1>
+    PCR 병원 조회 사이트
+</h1>
+
+</body>
+</html>

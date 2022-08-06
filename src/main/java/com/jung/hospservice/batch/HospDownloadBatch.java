@@ -20,7 +20,7 @@ public class HospDownloadBatch {
     private final HospitalRepository hospitalRepository;
 
     // cron = 초 분 시 일 월 주 (년)"
-    @Scheduled(cron = "0 13 * * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 * * * *", zone = "Asia/Seoul") // 메 시마다 배치 수행
     public void startBatch() {
 
         RestTemplate rt = new RestTemplate();
